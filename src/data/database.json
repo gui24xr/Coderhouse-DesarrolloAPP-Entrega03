@@ -1,0 +1,39 @@
+
+[
+  {
+    "id": 0,
+    "apellido": "Lopez",
+    "nombre": "Juan",
+    "telefono": 1145321267,
+    "imgPerfil": "https://imgs.search.brave.com/U624KT9Sm-xy7B8zS46q1e9i-spDyB4ZMupKT6Jexiw/rs:fit:500:0:0/g:ce/aHR0cHM6Ly9zZWN1/cmUuZ3JhdmF0YXIu/Y29tL2F2YXRhci84/NGI5MDUzMGE5NmVk/MjRhNTRjMmU1YmQ5/YzVkZjJjZD9zPTMw/JmQ9bW0mcj1y.jpeg"
+  },
+  {
+    "id": 1,
+    "apellido": "Lopez",
+    "nombre": "Pedro",
+    "telefono": 1148321267,
+    "imgPerfil": "https://imgs.search.brave.com/gd1zisHKUByVtrKJHgHXBXjpj-RtBhwaL-ZSgs8a21E/rs:fit:500:0:0/g:ce/aHR0cHM6Ly9pbWd2/My5mb3Rvci5jb20v/aW1hZ2VzL2dhbGxl/cnkvUGxhbnRpbGxh/LWRlLWltYWdlbi1k/ZS1wZXJmaWwtYWJz/dHJhY3RhLW5lZ3Jh/LmpwZw"
+  },
+  {
+    "id": 2,
+    "apellido": "Guardia",
+    "nombre": "Guillermo",
+    "telefono": 1159149165,
+    "imgPerfil": "https://reactjs.org/logo-og.png"
+  },
+  {
+    "id": 3,
+    "apellido": "Mendoza",
+    "nombre": "Isabel",
+    "telefono": 1132851478,
+    "imgPerfil": "https://www.nobbot.com/wp-content/uploads/2023/09/PD-137x137.jpg"
+  },
+  {
+    "id": 4,
+    "apellido": "Lopez",
+    "nombre": "Juan",
+    "telefono": 1145321267,
+    "imgPerfil": "https://reactjs.org/logo-og.png"
+  }
+  
+]
