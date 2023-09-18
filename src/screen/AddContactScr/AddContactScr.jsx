@@ -5,7 +5,7 @@ import { useState } from 'react'
 import { HeadBar,SubHeader,InputForm,ListaContactos } from '../../components'
 import { baseDatos } from '../../data/agendaDatos'
 
-const AddContactScr = () => {
+const AddContactScr = ({ navigation, route }) => {
 
     const [datosMostrados, setDatosMostrados] = useState(baseDatos.getRegistros())
 
@@ -14,7 +14,7 @@ const AddContactScr = () => {
     <>
     
     <HeadBar title={'Pepe MSN'}/>
-    <SubHeader />
+    <SubHeader navigation={navigation}/>
     <InputForm accionarRenderizado={accionarRenderizado}/>
     <ListaContactos datosMostrados={datosMostrados} screen={''}/>
     </>

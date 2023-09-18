@@ -14,7 +14,7 @@ import { ListaContactos } from "../../components";
 
 
 
-const Home = () => {
+const Home = ({ navigation, route }) => {
  
 
     const [datosMostrados, setDatosMostrados] = useState(baseDatos.getRegistros())
@@ -24,7 +24,7 @@ const Home = () => {
   return (
     <View style={styles.container}>
         <HeadBar title="Mis Contactos" />
-        <SubHeader />
+        <SubHeader navigation={navigation}/>
         <ListaContactos datosMostrados={datosMostrados} screen={screenActiva} />
     </View>
   );

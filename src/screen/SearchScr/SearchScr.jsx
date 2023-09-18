@@ -6,7 +6,7 @@ import { baseDatos } from '../../data/agendaDatos'
 import styles from './SearchScr.styles'
 
 
-const SearchScr = () => {
+const SearchScr = ({ navigation, route }) => {
 
   const [datosMostrados, setDatosMostrados] = useState(baseDatos.getRegistros());
   const [onSearch, SetOnSearch] = useState("");
@@ -30,7 +30,7 @@ const SearchScr = () => {
   return (
     <>
       <HeadBar/>
-      <SubHeader />
+      <SubHeader navigation={navigation} />
       <SearchInput SetOnSearch={SetOnSearch}/>
       <ListaContactos datosMostrados={datosMostrados} screen={''}/>
     </>

@@ -22,7 +22,19 @@ export default function App() {
 
   return (
     <NavigationContainer>
-      <Stack.Navigator>
+      <Stack.Navigator    
+      
+      initialRouteName="Home" screenOptions={({ route, navigation }) => ({
+        headerShown: false,
+        /* header: () => (
+          <View style={{ flexDirection: 'row', marginTop: 50 }}>
+            <Button onPress={() => navigation.goBack()} title="Go Back" />
+            <Header title={route.name} />
+          </View>
+        ), */
+      })}
+      
+      >
         <Stack.Screen name="Home" component={Home} />
         <Stack.Screen name="AddContactScr" component={AddContactScr} />
         <Stack.Screen name="SearchScr" component={SearchScr} />
