@@ -1,63 +1,46 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, Button } from 'react-native';
-import { useState } from 'react';
-import Card from './src/components/CardContactos/CardContactos' //Aca se importa sin llaves
-import InputForm from './src/components/InputForm/InputForm';
 
-import CardContactos from './src/components/CardContactos/CardContactos';
-import ListaContactos from './src/components/ListaContactos/ListaContactos';
-import { baseDatos as agendaDatosInicial , verDatos, updateDataBase, asignarId} from './src/data/agendaDatos';
+import { StyleSheet, Text, View, Button } from "react-native";
+
+import { useFonts } from "expo-font";
+
+import fonts from "./src/global/fonts";
+
+import { AddContactScr, Home, SearchScr } from "./src/screen";
 
 
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+
+
+
+
+const Stack = createNativeStackNavigator();
 
 export default function App() {
 
-  //Este es el estado actual de la agenda.
-  const [agenda,setAgenda] = useState(agendaDatosInicial)
-
-  
-
-
-
-  function funcionAgregarDatos(nombreIngresado,apellidoIngresado,telefonoIngresado,imgPerfilIngresado){
-    setAgenda((prevState) => [...prevState,{id:asignarId(agenda), apellido:apellidoIngresado,nombre: nombreIngresado, telefono:telefonoIngresado,imgPerfil:imgPerfilIngresado}]);
-    updateDataBase(agenda)
-  }
+  const [fontsLoaded]=useFonts(fonts)
 
   return (
-   
-    <View style={styles.container}>
-
-
-    <Text>Funcionando</Text>
-    <InputForm  funcionAgregarDatos={funcionAgregarDatos}/>
-    <ListaContactos agenda={agenda} setAgenda={setAgenda}/>
-
-    <Button title='Agenda' onPress={verDatos}/>
-    
-    </View>
-
-  )
- 
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen name="Home" component={Home} />
+        <Stack.Screen name="AddContactScr" component={AddContactScr} />
+        <Stack.Screen name="SearchScr" component={SearchScr} />
+      </Stack.Navigator>
+    </NavigationContainer>
+  );
 }
+
+
+
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    
+    backgroundColor: "#fff",
+    alignItems: "center",
+    justifyContent: "center",
+    flexDirection: "column",
   },
 });
-
-
-/*  <View style={styles.container}>
-     <Card  parametro1={'Hola'} 
-            parametro2={'Hola'} 
-            parametro3={'Hola'}/>
-
-            <Button title="Variable" onPress={()=> alert('Variable: ' + misDatos)} />
-            <Button title="Variable" onPress={()=> alert('H')} />
-            
-         
-    </View>*/ 

@@ -1,43 +1,70 @@
-import { StyleSheet, Text, View, FlatList } from 'react-native'
-import { useState } from 'react'
-import React from 'react'
-import CardContactos from '../CardContactos/CardContactos'
-import styles from './ListaContactos.styles'
+import { StyleSheet, Text, View, FlatList } from "react-native";
+import { useState,useEffect } from "react";
+import React from "react";
+import CardContactos from "../CardContactos/CardContactos";
+import styles from "./ListaContactos.styles";
 
-const ListaContactos = ({agenda,setAgenda}) => {
-
-
-
+const ListaContactos = ({ datosMostrados, screen }) => {
   
-  const funcionRenderizadora = (  
-    { item }) => <CardContactos id={item.id}  nombre={item.nombre}  apellido={item.apellido}
-                                                                telefono={item.telefono}
-                                                                imgPerfil={item.imgPerfil}
-                                                               
-                                                                //Le paso la agenda para poder eliminar
-                                                                datos={agenda}
-                                                                setAgenda={setAgenda}
-                                                                />
+//const [datosMostrados,setDatosMostrados] = useState(agenda)
+
+
+  const renderizarChat = ({ item }) => (
+    <CardContactos
+      cardType= 'chat'
+      id={item.id}
+      nombre={item.nombre}
+      apellido={item.apellido}
+      telefono={item.telefono}
+      imgPerfil={item.imgPerfil}
+      ultimoMensaje={item.mensajes[0].texto}
+      ultimoMensajeHora={item.mensajes[0].Hora}
+
       
+      //Le paso la agenda para poder eliminar
+     
+      //setAgenda={setAgenda}
+    />
+  );
 
-
-
+  const renderizarListaContactos = ({ item }) => (
+    <CardContactos
+      cardType= 'contactsList'
+      id={item.id}
+      nombre={item.nombre}
+      apellido={item.apellido}
+      telefono={item.telefono}
+      imgPerfil={item.imgPerfil}
+      estado={item.estado}
+      //Le paso la agenda para poder eliminar
+    
+      //setAgenda={setAgenda}
+    />
+  );
 
 
   return (
-    <View>
-     
-    <Text style={styles.AgendaHeader}>Mis Contactos</Text>
-    
+    <>
       
-    <FlatList
-    style={styles.ListaContactos}
-    data={agenda}
-    renderItem={funcionRenderizadora}
-    />
 
-    </View>
-  )
-}
+        {screen == 'chatsScreen' ? 
+        <FlatList
+          style={styles.ListaContactos}
+          data={datosMostrados}
+          renderItem={renderizarChat}
+        />
+        
+        :
 
-export default ListaContactos
+        <FlatList
+        style={styles.ListaContactos}
+        data={datosMostrados}
+        renderItem={renderizarListaContactos}
+      />
+      
+      }
+    </>
+  );
+};
+
+export default ListaContactos;

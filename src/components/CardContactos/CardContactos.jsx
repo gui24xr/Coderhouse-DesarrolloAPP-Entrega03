@@ -4,9 +4,8 @@ import React from 'react'
 import styles from './CardContactos.styles'
 
 const CardContactos = (props) => {
-
+/*
   const [itemSeleccionado, setItemSeleccionado] = useState(0);
-
 
   
   const seleccionarItem = () => {
@@ -20,20 +19,43 @@ const CardContactos = (props) => {
     copiaAgenda.splice(indiceElementoBuscado, 1);
     props.setAgenda([...copiaAgenda]);
         
-  };
+  };*/
 
   return (
-    <View style={styles.CardsContactos} > 
-      
-      <Image source={{uri:props.imgPerfil}} style={styles.fotoPerfil}/>
-      <Text style={styles.peopleTextCard}>{props.id}</Text>
-      <View>
-        <Text style={styles.peopleTextCard}>{props.apellido +'  '+ props.nombre}</Text>
-        <Text style={styles.numberTextCard}>{props.telefono}</Text>
-      </View>
-      <Button title="Eliminar" onPress={seleccionarItem} />
-  
-  </View>
+
+    <>
+    { props.cardType == 'chat'  ?
+                <Pressable style={styles.CardsContactos} 
+                onLongPress={()=> alert("Proximamente abrir chat")}> 
+                  
+                  <Image source={{uri:props.imgPerfil}} style={styles.fotoPerfil}/>
+                  {/*<Text style={styles.peopleTextCard}>{props.id}</Text>*/}
+                  <View>
+                    <Text style={styles.peopleTextCard}>{props.apellido}  {props.nombre}  {props.ultimoMensajeHora}</Text>
+                    <Text style={styles.numberTextCard}>{props.ultimoMensaje}</Text>
+                  </View>
+                  {/*<Button title="Eliminar" onPress={()=>alert("S")} />*/}
+    
+  </Pressable>
+
+  :
+
+                    <Pressable style={styles.CardsContactos} 
+                    onLongPress={()=> alert("Funcionalidad en desarrollo!")}> 
+
+                  <Image source={{uri:props.imgPerfil}} style={styles.fotoPerfil}/>
+                  {/*<Text style={styles.peopleTextCard}>{props.id}</Text>*/}
+                  <View>
+                  <Text style={styles.peopleTextCard}>{props.apellido +'  '+ props.nombre}</Text>
+                  <Text style={styles.numberTextCard}>{props.telefono}</Text>
+                  <Text style={styles.numberTextCard}>{props.estado}</Text>
+                  </View>
+                  {/*<Button title="Eliminar" onPress={()=>alert("S")} />*/}
+
+                  </Pressable>
+
+  }
+  </>
 
   )
 }

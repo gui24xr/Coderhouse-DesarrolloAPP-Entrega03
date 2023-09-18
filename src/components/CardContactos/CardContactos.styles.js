@@ -2,15 +2,15 @@ import { StyleSheet } from "react-native"
 import { colors } from "../../Constants/colors";
 
 const styles = StyleSheet.create({
-    CardsContactos: {
+    
+  CardsContactos: {
       backgroundColor: colors.tertiary,
       width: "100%",
-      borderRadius: 11,
-      flex: 2,
+      borderRadius: 12,
+      
       flexDirection: "row",
       alignItems: "center",
       justifyContent: "space-around",
-      fontWeight: "bold",
       
       paddingHorizontal:10,
 
@@ -18,8 +18,8 @@ const styles = StyleSheet.create({
       marginVertical: 3,
     },
     fotoPerfil: {
-      width: 35,
-      height: 35,
+      width: 45,
+      height: 45,
       alignSelf: "stretch",
       backgroundColor: "#00000000",
       alignItems: "flex-start",
@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
     },
     fotoContainer: {
       backgroundColor: "#3CB371",
-      width: "10%",
+   
       alignItems: "center",
       justifyContent: "flex-start",
     },
@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
     },
     peopleTextCard: {
       color: "#FFFFFF",
-
+   
       marginBottom: 5,
     },
     numberTextCard: {

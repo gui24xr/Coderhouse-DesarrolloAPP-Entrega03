@@ -1,37 +1,67 @@
+//----------------------------------------------------------------------------------
 
-//const customData = require('./archivo.json');
-//let agendaJson = JSON.stringify(agendaDatos)
-const defaultAvatar = 'https://imgs.search.brave.com/U624KT9Sm-xy7B8zS46q1e9i-spDyB4ZMupKT6Jexiw/rs:fit:500:0:0/g:ce/aHR0cHM6Ly9zZWN1/cmUuZ3JhdmF0YXIu/Y29tL2F2YXRhci84/NGI5MDUzMGE5NmVk/MjRhNTRjMmU1YmQ5/YzVkZjJjZD9zPTMw/JmQ9bW0mcj1y.jpeg'
-//Inicio la app leyendo el archivo.
-var baseDatos = require('./database.json');
-let hola = require('fs')
+class baseDatosObjeto {
+  constructor() {
+    this.datos = require("./database.json");
+  }
 
+  asignarID() {
+    let arrayID = [];
+    this.datos.map((item) => arrayID.push(item.id));
+    arrayID.sort(); //En este array ordenado busco el primer huevo y ese sera el nuevo id.
 
-//Por ahora esta seria la agenda de datos inicial pero la idea es que luego se modifique y se haga desde una base de datos
+    //Si la diferencia y-x es 2 entonces Y es el nuevo valor y sera el nuevo array.
+    let i = 0;
+    let encontrado = false;
+    let nuevoID = undefined;
 
+    while (!encontrado && i < arrayID.length) {
+      if (arrayID[i + 1] - arrayID[i] === 1) i++;
+      else {
+        encontrado = true;
+        nuevoID = arrayID[i] + 1;
+        break;
+      }
+    }
 
-//Al modificar por la app los contactos ya sea por agregar, editar o eliminar necesitamos modificar el archivo.
-function updateDataBase(nuevoArchivo){
+    if (nuevoID === undefined) nuevoID = arrayID.length;
 
-  //Nuevo archivo va a ser la agenda que nos va a dar nuestra app.. tengo que transformar a json y reenescribir el archivo.
-  //No creo sea eficiente borrar y poner todo de nuevo pero se trata de un programa sencillo asique lo hare.
- let nuevoContenidoJson = JSON.stringify(nuevoArchivo)
+    return nuevoID;
+  }
 
- console.log(nuevoContenidoJson)
+  agregarRegistro(apellido, nombre, telefono) {
+    let nuevoRegistro = {
+      id: this.asignarID(),
+      apellido: apellido,
+      nombre: nombre,
+      telefono: telefono,
+      imgPerfil: defaultAvatar,
+      estado: defaultEstado,
+      mensajes : defaultMessage
 
+    };
+    this.datos.push(nuevoRegistro);
+  }
+
+  eliminarRegistro(idRegistro) {
+    let indiceElementoBuscado = this.datos.findIndex((x) => x.id === idRegistro);
+    alert(indiceElementoBuscado +  " " + idRegistro)
+
+    if (indiceElementoBuscado != -1) this.datos.splice(indiceElementoBuscado, 1);
+    console.log(this.getRegistros())
+  }
+
+  getRegistros = () => this.datos;
 }
 
-const verDatos = ()=> console.log(agendaJson)
+//--------------------------------------------------------------------------------------------------------------------------------------
 
 
-const asignarId = (basedatos)=>{
+const defaultAvatar =
+  "https://imgs.search.brave.com/U624KT9Sm-xy7B8zS46q1e9i-spDyB4ZMupKT6Jexiw/rs:fit:500:0:0/g:ce/aHR0cHM6Ly9zZWN1/cmUuZ3JhdmF0YXIu/Y29tL2F2YXRhci84/NGI5MDUzMGE5NmVk/MjRhNTRjMmU1YmQ5/YzVkZjJjZD9zPTMw/JmQ9bW0mcj1y.jpeg";
 
-  //Supongo que el primer indice vacio es el ultimo
-  let primerIndexVacio = 0
-      
-  return primerIndexVacio;
+const defaultMessage = [{"Hora":"09:30","texto":"Hola amigo. Como estas?"},{"Hora":"09:32","texto":"Hoy jugas?"}]
+const defaultEstado = "Hola. Estoy usando Messenger !!"
 
-}
-
-
-export { baseDatos, defaultAvatar, verDatos,updateDataBase,asignarId };
+var baseDatos = new baseDatosObjeto();
+export { baseDatos, defaultAvatar };

@@ -3,8 +3,8 @@ import React from "react";
 import { useState, prevState } from "react";
 import {telefonoValido,esNombreValido} from '../../global/FuncionesAuxiliares'
 import styles from './InputForm.styles'
-import { defaultAvatar } from '../../data/agendaDatos';
 
+import {defaultAvatar, baseDatos} from '../../data/agendaDatos';
 
 //Este props me va a traer la funcion agregar datos y una variable para guardarle lo que hay escrito en el form.
 //Ojo xq el otro va a ser un form de busqueda, va a tener que ser otro.
@@ -26,16 +26,19 @@ const InputForm = (props) => {
     
     if (telefonoValido(telefonoIngresado) && esNombreValido(nombreIngresado) && esNombreValido(apellidoIngresado)) {
         
-        
-        //Esta funcion va  a retornar un objeto con los datos
-        props.funcionAgregarDatos(apellidoIngresado,nombreIngresado, telefonoIngresado,defaultAvatar); //Id lo dejamos al azar xq ahora la lista lo asigna solo.
-        
+       //La base de datos asigna ID x si sola. 
+     
+      baseDatos.agregarRegistro(apellidoIngresado,nombreIngresado,telefonoIngresado)
+      props.accionarRenderizado(); 
+      alert("Contacto agregado con exito !")
+     
+      
     }
     
         else
       alert(
         "Ingrese datos validos!\n Nota: Apellido y nombres 2 a 15 carateres, telefonos 8 a 10 digitos."
-      ); //Aca iria el box de aviso
+      ); //Aca iria el box de aviso 
   };
 
   return (
