@@ -32,7 +32,7 @@ const SearchScr = ({ navigation, route }) => {
       <HeadBar/>
       <SubHeader navigation={navigation} />
       <SearchInput SetOnSearch={SetOnSearch}/>
-      <ListaContactos datosMostrados={datosMostrados} screen={''}/>
+      <ListaContactos datosMostrados={datosMostrados} formaRenderizado={'allContacts'}/>
     </>
   )
 }

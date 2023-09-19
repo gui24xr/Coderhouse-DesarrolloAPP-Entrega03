@@ -18,14 +18,14 @@ const Home = ({ navigation, route }) => {
  
 
     const [datosMostrados, setDatosMostrados] = useState(baseDatos.getRegistros())
-    const [screenActiva,setScreenActiva] = useState('chatsScreen')
+ 
     
 
   return (
     <View style={styles.container}>
         <HeadBar title="Mis Contactos" />
         <SubHeader navigation={navigation}/>
-        <ListaContactos datosMostrados={datosMostrados} screen={screenActiva} />
+        <ListaContactos datosMostrados={datosMostrados} formaRenderizado='chatsScreen' />
     </View>
   );
 }

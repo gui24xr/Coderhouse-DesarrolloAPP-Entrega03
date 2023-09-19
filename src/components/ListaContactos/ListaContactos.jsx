@@ -4,67 +4,65 @@ import React from "react";
 import CardContactos from "../CardContactos/CardContactos";
 import styles from "./ListaContactos.styles";
 
-const ListaContactos = ({ datosMostrados, screen }) => {
-  
-//const [datosMostrados,setDatosMostrados] = useState(agenda)
 
 
-  const renderizarChat = ({ item }) => (
-    <CardContactos
-      cardType= 'chat'
-      id={item.id}
-      nombre={item.nombre}
-      apellido={item.apellido}
-      telefono={item.telefono}
-      imgPerfil={item.imgPerfil}
-      ultimoMensaje={item.mensajes[0].texto}
-      ultimoMensajeHora={item.mensajes[0].Hora}
+/* 
 
-      
-      //Le paso la agenda para poder eliminar
-     
-      //setAgenda={setAgenda}
-    />
-  );
+    RENDERIZADO CONDICIONAL MODIFICADO PARA GANAR ESCALABILIDAD 
+ En lugar de utilizar operadores ternarios en los return me parecio mejor usar directamentre condicionales y depende el parametro
+ recibido por el componentre en el parametro 'formaRenderizado ' hago un retorno u otro y si eventualmente necesito agregar otro tipo renderizado
+ uso otro if o un switch, ya que utilizando operadores ternarios en el return como en la actualizacion anterior me limitaba a 2 opciones. 
+ 
+ */
 
-  const renderizarListaContactos = ({ item }) => (
-    <CardContactos
-      cardType= 'contactsList'
-      id={item.id}
-      nombre={item.nombre}
-      apellido={item.apellido}
-      telefono={item.telefono}
-      imgPerfil={item.imgPerfil}
-      estado={item.estado}
-      //Le paso la agenda para poder eliminar
+
+ 
+const renderizarChat = ({ item }) => (
+  <CardContactos
+    cardType= 'chat'
+    id={item.id}
+    nombre={item.nombre}
+    apellido={item.apellido}
+    telefono={item.telefono}
+    imgPerfil={item.imgPerfil}
+    ultimoMensaje={item.mensajes[0].texto}
+    ultimoMensajeHora={item.mensajes[0].Hora}
+
     
-      //setAgenda={setAgenda}
-    />
-  );
+    
+  />
+);
+
+const renderizarListaContactos = ({ item }) => (
+  <CardContactos
+    cardType= 'contactCard'
+    id={item.id}
+    nombre={item.nombre}
+    apellido={item.apellido}
+    telefono={item.telefono}
+    imgPerfil={item.imgPerfil}
+    estado={item.estado}
+   
+  />
+);
+
+//Componente
 
 
+const ListaContactos = ({ datosMostrados, formaRenderizado }) => {
+  
+  //De acuerdo a el parametro recibido en formaRenderizado renderizo de una manera u otra.
+  if (formaRenderizado == 'chatsScreen'){
   return (
-    <>
-      
+    <> <FlatList style={styles.ListaContactos}  data={datosMostrados} renderItem={renderizarChat} /> </>);
+  }
 
-        {screen == 'chatsScreen' ? 
-        <FlatList
-          style={styles.ListaContactos}
-          data={datosMostrados}
-          renderItem={renderizarChat}
-        />
-        
-        :
+  if (formaRenderizado == 'allContacts'){
+  return (
+    <> <FlatList style={styles.ListaContactos}  data={datosMostrados} renderItem={renderizarListaContactos}/> </>);
+  }
 
-        <FlatList
-        style={styles.ListaContactos}
-        data={datosMostrados}
-        renderItem={renderizarListaContactos}
-      />
-      
-      }
-    </>
-  );
+
 };
 
 export default ListaContactos;

@@ -7,7 +7,7 @@ const SubHeader = ({navigation}) => {
   return (
     <View style={styles.container}>
     
-    <Pressable style={styles.tabButtonTipo1} onPressIn={()=> alert("CHAT")}>
+    <Pressable style={styles.tabButtonTipo1} onPressIn={()=> navigation.navigate('Home')}>
     <Image source={require('../../../assets/icons/icon_chat.png')} style={styles.icontabTipo1}/>
     <Text style={styles.textTab}>CHAT</Text>
     </Pressable>
