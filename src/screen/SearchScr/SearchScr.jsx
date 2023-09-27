@@ -29,7 +29,7 @@ const SearchScr = ({ navigation, route }) => {
 
   return (
     <>
-      <HeadBar/>
+      <HeadBar title='Messenger'/>
       <SubHeader navigation={navigation} />
       <SearchInput SetOnSearch={SetOnSearch}/>
       <ListaContactos datosMostrados={datosMostrados} formaRenderizado={'allContacts'}/>

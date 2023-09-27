@@ -23,7 +23,7 @@ const Home = ({ navigation, route }) => {
 
   return (
     <View style={styles.container}>
-        <HeadBar title="Mis Contactos" />
+        <HeadBar title='Messenger' />
         <SubHeader navigation={navigation}/>
         <ListaContactos datosMostrados={datosMostrados} formaRenderizado='chatsScreen' />
     </View>

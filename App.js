@@ -5,11 +5,13 @@ import { useFonts } from "expo-font";
 
 import fonts from "./src/global/fonts";
 
-import { AddContactScr, Home, SearchScr } from "./src/screen";
+import { AddContactScr, Home, SearchScr, ConfigScr } from "./src/screen";
 
+import { CardContactos, HeadBar, InputForm, ListaContactos, SearchInput, SubHeader } from "./src/components";
 
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+
 
 
 
@@ -21,6 +23,10 @@ export default function App() {
   const [fontsLoaded]=useFonts(fonts)
 
   return (
+
+    
+   
+    
     <NavigationContainer>
       <Stack.Navigator    
       
@@ -32,15 +38,20 @@ export default function App() {
             <Header title={route.name} />
           </View>
         ), */
-      })}
-      
-      >
+      })} >
         <Stack.Screen name="Home" component={Home} />
         <Stack.Screen name="AddContactScr" component={AddContactScr} />
         <Stack.Screen name="SearchScr" component={SearchScr} />
-      </Stack.Navigator>
+        <Stack.Screen name="ConfigScr" component={ConfigScr} />
+       </Stack.Navigator>
     </NavigationContainer>
-  );
+
+
+    
+   
+    
+  
+  )
 }
 
 

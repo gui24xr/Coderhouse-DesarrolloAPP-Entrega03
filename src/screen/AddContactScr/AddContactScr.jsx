@@ -13,7 +13,7 @@ const AddContactScr = ({ navigation, route }) => {
   return (
     <>
     
-    <HeadBar title={'Pepe MSN'}/>
+    <HeadBar title='Messenger'/>
     <SubHeader navigation={navigation}/>
     <InputForm accionarRenderizado={accionarRenderizado}/>
     <ListaContactos datosMostrados={datosMostrados} formaRenderizado={'allContacts'}/>

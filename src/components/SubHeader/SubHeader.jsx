@@ -33,6 +33,11 @@ const SubHeader = ({navigation}) => {
 
     </Pressable>
 
+    <Pressable style={styles.tabButtonTipo2} onPressIn={()=> navigation.navigate('ConfigScr')}>
+    <Image source={require('../../../assets/icons/icon_config.png')} style={styles.icontabTipo2}/>
+   
+    </Pressable>
+
   </View>
   )
 }
