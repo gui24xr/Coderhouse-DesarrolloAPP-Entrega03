@@ -4,31 +4,17 @@ import { StyleSheet} from "react-native";
 const styles = StyleSheet.create({
 
     cardStyle:{
-        backgroundColor:'green', 
-        padding: 20, 
-        marginHorizontal:40, 
-        marginVertical:20, 
+        backgroundColor:'transparent', 
+        padding: 0, 
+        marginHorizontal:30, 
+        marginVertical:30, 
         flexDirection:'row', 
         justifyContent: 'space-evenly',
+        minHeight: 200,
+        borderWidth: 0.5,
   
     },
-    colorItem1:{
-        marginHorizontal: 10,
-        marginVertical: 20,
-        flex:0.5,
-        backgroundColor:'blue', 
-        minHeight: 50,
-        
-    },
-
-    colorItem2:{
-        marginHorizontal: 10,
-        marginVertical: 20,
-        flex:0.5,
-        backgroundColor:'red', 
-        minHeight: 50,
-        
-    },
+ 
 
 })
 

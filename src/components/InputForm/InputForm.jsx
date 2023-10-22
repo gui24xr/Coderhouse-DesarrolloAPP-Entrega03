@@ -1,35 +1,40 @@
 import { StyleSheet, Text, View,TextInput,Button } from 'react-native'
 import React from "react";
-import { useState, prevState } from "react";
+import { useState } from "react";
 import {telefonoValido,esNombreValido} from '../../global/FuncionesAuxiliares'
 import styles from './InputForm.styles'
 
-import {defaultAvatar, baseDatos} from '../../data/agendaDatos';
+import {useDispatch } from 'react-redux';
+import { agregarDatos } from '../../features/datos/datosSlice';
 
-//Este props me va a traer la funcion agregar datos y una variable para guardarle lo que hay escrito en el form.
-//Ojo xq el otro va a ser un form de busqueda, va a tener que ser otro.
-const InputForm = (props) => {
+
+const InputForm = () => {
   
-  //Estados
+  const dispatch = useDispatch()
+  //Usestates para ingreso de datos
   const [nombreIngresado, setNombreIngresado] = useState("");
   const [apellidoIngresado, setApellidoIngresado] = useState("");
   const [telefonoIngresado, setTelefonoIngresado] = useState("");
 
-  //Funciones
-  const capturarNombreIngresado = (text) => {setNombreIngresado(text);}
-  const capturarApellidoIngresado = (text) => setApellidoIngresado(text); 
-  const capturarTelefonoIngresado = (text) => setTelefonoIngresado(text); //Faltara luego agregar validaciones que sean numeros.
- 
-  //const getValorInput = () => alert(nombreIngresado + " " + telefonoIngresado);
-
+  
   const ingresarDatos = () => {
     
     if (telefonoValido(telefonoIngresado) && esNombreValido(nombreIngresado) && esNombreValido(apellidoIngresado)) {
         
-       //La base de datos asigna ID x si sola. 
-     
-      baseDatos.agregarRegistro(apellidoIngresado,nombreIngresado,telefonoIngresado)
-      props.accionarRenderizado(); 
+       //ACA TENGO QUE CAMBIAR POR UN ACTION DE REDUX SOBRE LA BASE DE DATOS
+       /* Necesito: 1- Que la action actue sobre la BD guardando los datos. 2- Que la misma action actualice los datosMostrados */
+      
+       //Voy a a guardar los datos en un objeto para pasar como action.
+      const datosNuevoContacto = { 
+        apellidoIngresado:apellidoIngresado, 
+        nombreIngresado: nombreIngresado,
+        telefonoIngresado: telefonoIngresado
+      }
+      
+      /*Ejecuto accion mediante dispatch con los datos*/     
+      dispatch(agregarDatos(datosNuevoContacto))
+
+      /*Aviso que la operacion se dio con exito */
       alert("Contacto agregado con exito !")
      
       
@@ -38,7 +43,7 @@ const InputForm = (props) => {
         else
       alert(
         "Ingrese datos validos!\n Nota: Apellido y nombres 2 a 15 carateres, telefonos 8 a 10 digitos."
-      ); //Aca iria el box de aviso 
+      ); 
   };
 
   return (
@@ -49,13 +54,13 @@ const InputForm = (props) => {
     style={styles.InputBox}
     placeholder="Apellido"
     value={apellidoIngresado}
-    onChangeText={capturarApellidoIngresado}
+    onChangeText={(text) => setApellidoIngresado(text)}
   />
       <TextInput
         style={styles.InputBox}
         placeholder="Nombre"
         value={nombreIngresado}
-        onChangeText={capturarNombreIngresado}
+        onChangeText={(text) => {setNombreIngresado(text);}}
       />
 
       
@@ -65,7 +70,7 @@ const InputForm = (props) => {
         placeholder="Telefono"
         keyboardType="numeric"
         value={telefonoIngresado}
-        onChangeText={capturarTelefonoIngresado}
+        onChangeText={(text) => setTelefonoIngresado(text)}
 
       />
 

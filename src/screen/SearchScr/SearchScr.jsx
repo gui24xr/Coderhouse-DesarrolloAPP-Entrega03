@@ -1,41 +1,33 @@
-import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
-import { useState, useEffect } from 'react'
-import { HeadBar, SubHeader, SearchInput, ListaContactos } from '../../components'
-import { baseDatos } from '../../data/agendaDatos'
-import styles from './SearchScr.styles'
-
+import { StyleSheet, Text, View } from "react-native";
+import React from "react";
+import { useState, useEffect } from "react";
+import {
+  HeadBar,
+  SubHeader,
+  SearchInput,
+  ListaContactos,
+} from "../../components";
+import { baseDatos } from "../../data/agendaDatos";
+import styles from "./SearchScr.styles";
+import { useSelector } from "react-redux";
 
 const SearchScr = ({ navigation, route }) => {
-
-  const [datosMostrados, setDatosMostrados] = useState(baseDatos.getRegistros());
-  const [onSearch, SetOnSearch] = useState("");
-
-  useEffect(() => {
-    let busquedaFiltrada = baseDatos
-      .getRegistros()
-      .filter(
-        (item) =>
-          item.nombre.includes(onSearch) ||
-          item.apellido.includes(onSearch) ||
-          item.nombre.includes(onSearch.toUpperCase()) ||
-          item.apellido.includes(onSearch.toUpperCase()) ||
-          item.telefono.includes(onSearch)
-      );
-
-    if (busquedaFiltrada.length > 0) setDatosMostrados(busquedaFiltrada);
-    else alert("No existen datos")
-  }, [onSearch]);
+  //const [datosMostrados, setDatosMostrados] = useState(baseDatos.getRegistros());
+  //const [onSearch, SetOnSearch] = useState("");
+  const datosBuscados = useSelector((state) => state.datos.datosBuscados);
 
   return (
     <>
-      <HeadBar title='Messenger'/>
+      <HeadBar title="Messenger" />
       <SubHeader navigation={navigation} />
-      <SearchInput SetOnSearch={SetOnSearch}/>
-      <ListaContactos datosMostrados={datosMostrados} formaRenderizado={'allContacts'}/>
+      <SearchInput />
+
+      <ListaContactos
+        datosMostrados={datosBuscados}
+        formaRenderizado={"allContacts"}
+      />
     </>
-  )
-}
+  );
+};
 
-export default SearchScr
-
+export default SearchScr;

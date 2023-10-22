@@ -11,13 +11,15 @@ import styles from './Home.styles';
 import { HeadBar } from "../../components";
 import { SubHeader } from "../../components";
 import { ListaContactos } from "../../components";
+import {useSelector } from 'react-redux';
 
 
 
 const Home = ({ navigation, route }) => {
  
-
-    const [datosMostrados, setDatosMostrados] = useState(baseDatos.getRegistros())
+  
+    //const [datosMostrados, setDatosMostrados] = useState(baseDatos.getRegistros())
+    const datosMostrados = useSelector(state => state.datos.datosMostrados)
  
     
 
